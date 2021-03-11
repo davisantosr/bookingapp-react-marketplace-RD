@@ -1,10 +1,10 @@
 import express from 'express';
 
+import {showMessage} from '../controllers/auth.js';
+
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.status(200).send('API is running')
-})
+router.use('/running', showMessage);
 
 
 export default router;

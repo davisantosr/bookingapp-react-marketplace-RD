@@ -1,5 +1,10 @@
 import express from 'express';
-import router from './routes/auth.js';
+import router from './routes/index.js'
+
+// autoloading routes
+// import fs from 'fs';
+// autoloading routes
+// fs.readdirSync('./routes').map((route) => app.use('/api', require(`./routes/${route}`)));  
 
 const app = express();
 
