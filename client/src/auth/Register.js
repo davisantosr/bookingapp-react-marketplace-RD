@@ -12,7 +12,7 @@ const Register = ({history}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.table({name, email, password})    
-    const res = await axios.post(`http://localhost:5000/api/register/`, {
+    const res = await axios.post(`${process.env.REACT_APP_API}/register/`, {
       name, email, password
     }).then(response => {
       toast.success("Successfully registered. Please login.")
@@ -23,7 +23,7 @@ const Register = ({history}) => {
       
     })
   }
-
+  
   return (
     <React.Fragment>
       <div className='container-fluid bg-secondary h1 p-5 text-center'>
