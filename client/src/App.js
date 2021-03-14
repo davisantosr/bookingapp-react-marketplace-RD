@@ -1,5 +1,7 @@
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {Provider} from 'react-redux';
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Home from './booking/Home';
 import Login from './auth/Login';
@@ -16,6 +18,7 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <TopNav/>
+          <ToastContainer position={'top-center'}/>
           <Switch>
             <Route component={Home} exact path={'/'}/>
             <Route component={Login} path={'/login'}/>
