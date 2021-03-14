@@ -3,7 +3,7 @@ import authRouter from './auth.js'
 
 const routes = Router();
 
-routes.use('/', authRouter)
+routes.use('/register', authRouter);
 
 
 

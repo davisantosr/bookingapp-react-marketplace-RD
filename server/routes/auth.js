@@ -1,10 +1,11 @@
 import express from 'express';
 
-import {showMessage} from '../controllers/auth.js';
+import {authController} from '../controllers/auth.js';
 
 const router = express.Router();
+const auth = new authController();
 
-router.use('/running', showMessage);
+router.post('/', auth.register);
 
 
 export default router;
