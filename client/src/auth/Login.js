@@ -8,15 +8,36 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = e => {
+    
+  const login = async (user) => {
+    const {email, password} = user;
+    
+    console.log('LOGIN REQUEST DATA', {email, password})
+  
+    await axios.post(`${process.env.REACT_APP_API}/login/`, {
+      email, password
+    }) 
+  }
+
+  const handleSubmit = async e => {
     e.preventDefault();
 
-    //  
+    try {
+      let res = await login({email, password})
+
+      if(res.data) {
+        console.log('save user res in redux and local storage then redirect ==>')
+        console.log(res.data)
+      }
+
+    } catch(err) {
+      console.log(err)
+      if(err.response.status === 400) {
+        toast.error(err.response.data)
+      }
+    }
   }
-  
-  const login = async () => {
-    await axios.post(`${process.env.REACT_APP_API}/login/`) 
-  }
+
   return (
     <> 
       <div className='container-fluid bg-secondary h1 p-5 text-center'>
