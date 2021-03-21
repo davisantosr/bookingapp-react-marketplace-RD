@@ -1,20 +1,15 @@
 import React from 'react';
 
-const RegisterForm = (props) =>{
-  const {handleSubmit, name, setName, email, setEmail, password, setPassword} = props;
+const LoginForm = (props) =>{
+  const {
+    handleSubmit, 
+    email, 
+    setEmail, 
+    password, 
+    setPassword
+  } = props;
   return (
     <form onSubmit={handleSubmit} className={'mt-5'}>
-      <div className={'form-group mb-3'}>
-        <label className={'form-label'}>Your name</label>
-        <input
-          type={'text'}
-          className={'form-control'}
-          placeholder={'Name'}
-          value={name}
-          onChange={e => setName(e.target.value)}
-
-        />
-      </div>
 
       <div className={'form-group mb-3'}>
         <label className={'form-label'}>Email Address</label>
@@ -49,4 +44,4 @@ const RegisterForm = (props) =>{
   )
 }
 
-export default RegisterForm
+export default LoginForm
