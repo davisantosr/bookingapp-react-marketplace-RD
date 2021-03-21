@@ -43,7 +43,6 @@ userSchema.pre('save', async function(next) {
   } else {
     return next();
   }
-  
   // if(user.isModified('password')) {
   //   const salt = await bcrypt.genSalt(12)
   //   return bcrypt.hash(user.password, salt, function(err, hash) {
@@ -57,6 +56,20 @@ userSchema.pre('save', async function(next) {
   // } else {
   //   return next();
   // }
+
+
+  userSchema.methods.comparePassword = function(password, next) {
+    bcrypt.compare(password, this.password, function(err, match) {
+      if(err) {
+        console.log('Compare password err', err)
+        return next(err, false);
+      }
+      // no err === null
+      console.log('match password', match)
+      return next(null, match);
+    })
+
+  }
   
 })
 
