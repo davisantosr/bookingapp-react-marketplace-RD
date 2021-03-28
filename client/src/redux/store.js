@@ -5,7 +5,7 @@ import {rootReducer} from './reducers'
 
 
 const userInfoFromStorage = localStorage.getItem('auth') 
-? JSON.parse(localStorage.getItem('auth')) : {}
+? {userInfo:JSON.parse(localStorage.getItem('auth'))} : {userInfo: {}}
 
 const initialState = {
   auth: userInfoFromStorage

@@ -3,7 +3,7 @@ import {
 } from '../constants/auth'
 
 const initialState = {
-  auth: '',
+  userInfo: {},
 }
 
 export const authReducer = (state=initialState, action) => {
@@ -11,11 +11,11 @@ export const authReducer = (state=initialState, action) => {
     case LOGGED_IN_USER:
       return {
         ...state,
-        auth: action.payload
+        userInfo: action.payload
       } 
     case LOGOUT:
       return {
-        ...state,
+        userInfo: {}
       }
     default:
       return state    
