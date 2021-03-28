@@ -3,7 +3,7 @@ import {
 } from '../constants/auth'
 
 const initialState = {
-  
+  auth: '',
 }
 
 export const authReducer = (state=initialState, action) => {
@@ -11,6 +11,7 @@ export const authReducer = (state=initialState, action) => {
     case LOGGED_IN_USER:
       return {
         ...state,
+        auth: action.payload
       } 
     case LOGOUT:
       return {

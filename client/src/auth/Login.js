@@ -2,39 +2,58 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {toast} from 'react-toastify';
 import LoginForm from '../components/LoginForm';
+import {useDispatch} from 'react-redux';
 
-const Login = () => {
+import {saveUserInfo} from '../redux/actions/auth';
+import { LOGGED_IN_USER } from '../redux/constants/auth';
+
+const Login = ({history}) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useDispatch();
+
     
-  const login = async (user) => {
+  const handleLogin = async (user) => {
     const {email, password} = user;
     
-    console.log('LOGIN REQUEST DATA', {email, password})
-  
-    await axios.post(`${process.env.REACT_APP_API}/login/`, {
-      email, password
-    }) 
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_API}/login/`, {
+        email, password
+      })
+      
+      return res.data
+    }
+    catch(err) {
+      console.log(err)
+    }
+
   }
 
   const handleSubmit = async e => {
     e.preventDefault();
 
     try {
-      let res = await login({email, password})
+      let res = await handleLogin({email, password})
 
-      if(res.data) {
-        console.log('save user res in redux and local storage then redirect ==>')
-        console.log(res.data)
+      if(res) {
+        window.localStorage.setItem('auth', JSON.stringify(res.data))
+
+        // save to Redux
+        dispatch({
+          type: LOGGED_IN_USER,
+          payload: res
+        })
       }
+      
+      // history.push('/')
 
     } catch(err) {
       console.log(err)
-      if(err.response.status === 400) {
-        toast.error(err.response.data)
-      }
+      // if(err.response.status === 400) {
+      //   toast.error(err.response.data)
+      // }
     }
   }
 
