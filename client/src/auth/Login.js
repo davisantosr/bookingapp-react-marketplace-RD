@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {toast} from 'react-toastify';
 import LoginForm from '../components/LoginForm';
 import {useDispatch} from 'react-redux';
 
-import {saveUserInfo} from '../redux/actions/auth';
 import { LOGGED_IN_USER } from '../redux/constants/auth';
 
 const Login = ({history}) => {
@@ -38,7 +36,7 @@ const Login = ({history}) => {
       let res = await handleLogin({email, password})
 
       if(res) {
-        window.localStorage.setItem('auth', JSON.stringify(res.data))
+        window.localStorage.setItem('auth', JSON.stringify(res))
 
         // save to Redux
         dispatch({
@@ -47,7 +45,7 @@ const Login = ({history}) => {
         })
       }
       
-      // history.push('/')
+      history.push('/')
 
     } catch(err) {
       console.log(err)

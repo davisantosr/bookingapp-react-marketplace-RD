@@ -12,7 +12,7 @@ const Register = ({history}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.table({name, email, password})    
-    const res = await axios.post(`${process.env.REACT_APP_API}/register/ `, {
+    await axios.post(`${process.env.REACT_APP_API}/register/ `, {
       name, email, password
     }).then(response => {
       toast.success("Successfully registered. Please login.")
