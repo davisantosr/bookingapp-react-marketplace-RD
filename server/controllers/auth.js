@@ -1,4 +1,5 @@
 import User from '../models/userModel.js';
+import jwt from 'jsonwebtoken';
 
 export class authController{
   
@@ -50,8 +51,18 @@ export class authController{
         if(!match || err) {
           return res.status(400).send('Wrong Password')
         }
-
         console.log('Generate token and send to client')
+        let token = jwt.sign({_id: user.id}, process.env.JWT_SECRET, {
+          expiresIn: '7d'
+        })
+
+        res.json({token, user: {
+          _id: user._id,
+          name: user.name,
+          email: user.email, 
+          createdAt: user.createdAt, 
+          updatedAt: user.updatedAt,
+        }})
       })
 
 
