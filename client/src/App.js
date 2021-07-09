@@ -11,6 +11,7 @@ import Dashboard from "./user/Dashboard";
 
 import { store } from "./redux/store";
 import PrivateRoute from "./components/PrivateRoute";
+import DashboardSeller from "./user/DashboardSeller";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
             <Route component={Login} path={"/login"} />
             <Route component={Register} path={"/register"} />
             <PrivateRoute component={Dashboard} path={"/dashboard"} />
+            <PrivateRoute
+              component={DashboardSeller}
+              path={"/dashboard/seller"}
+            />
           </Switch>
         </BrowserRouter>
       </Provider>
